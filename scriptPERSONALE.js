@@ -1,17 +1,17 @@
 function caricaDati(file, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.overrideMimeType("application/json");
-  xhr.open('GET', file, true);
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          callback(xhr.responseText);
-      }
-  };
-  xhr.send(null);
+    var xhr = new XMLHttpRequest();
+    xhr.overrideMimeType("application/json");
+    xhr.open('GET', file, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            callback(xhr.responseText);
+        }
+    };
+    xhr.send(null);
 }
 
 function generaNumeroCasuale(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var nomiUtilizzati = [];
@@ -42,9 +42,9 @@ function generaPersonaggio() {
                     var nomeCasuale = generaNomeCasuale(nomi);
 
                     var risultato = document.getElementById("risultato");
-                    risultato.innerHTML = "<p>Name: " + nomeCasuale + "</p>" +
-                        "<p>Class: " + classeCasuale + "</p>" +
-                        "<p>Race: " + razzaCasuale + "</p>";
+                    risultato.innerHTML = "<p>Name: <span class='white-text'>" + nomeCasuale + "</span></p>" +
+                        "<p>Class: <span class='white-text'>" + classeCasuale + "</span></p>" +
+                        "<p>Race: <span class='white-text'>" + razzaCasuale + "</span></p>";
                 });
             });
         });
