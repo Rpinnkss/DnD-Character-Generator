@@ -25,7 +25,7 @@ function generaPersonaggio() {
           var nomiClasse = classe.map(function(classe) {
               return classe.name;
           });
-          var classeCasuale = nomiClasse;
+          var classeCasuale = nomiClasse[generaNumeroCasuale(0, nomiClasse.length - 1)];
 
           caricaDati('data/races.json', function(response) {
               var razze = JSON.parse(response).race;
@@ -34,24 +34,9 @@ function generaPersonaggio() {
               });
               var razzaCasuale = nomiRazze[generaNumeroCasuale(0, nomiRazze.length - 1)];
 
-              fetch('http://localhost:5000/get-fake-name', {
-                      method: 'GET',
-                  })
-                  .then(response => response.json())
-                  .then(data => {
-                      var Name = data.name;
-                      console.log(Name);
-
                       var risultato = document.getElementById("risultato");
-                      risultato.innerHTML = "<h2>Name: " + Name + "</h2>" +
-                          "<p>Class: " + classeCasuale + "</p>" +
+                      risultato.innerHTML = "<p>Class: " + classeCasuale + "</p>" +
                           "<p>Race: " + razzaCasuale + "</p>";
-                  })
-                  .catch(error => {
-                      console.error('Errore nella richiesta fetch:', error);
-                      var risultato = document.getElementById("risultato");
-                      risultato.innerHTML = "<p>Si è verificato un errore durante il caricamento del nome.</p>";
-                  });
           });
       });
   });
