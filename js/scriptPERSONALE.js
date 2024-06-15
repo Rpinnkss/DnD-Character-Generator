@@ -23,25 +23,31 @@ function generateCharacter() {
             loadJSON('data/races.json', raceData => {
                 const raceName = raceData.race[getRandomNumber(0, raceData.race.length - 1)].name;
 
-                var generator = NameGen.compile("sV i");
+                loadJSON('data/backgrounds.json', backgroundData => {
+                    const backgroundName = backgroundData.background[getRandomNumber(0, backgroundData.background.length - 1)].name;
 
-                var name = generator.toString();
+                    var generator = NameGen.compile("sV i");
 
-                name = name.charAt(0).toUpperCase() + name.slice(1);
+                    var name = generator.toString();
+    
+                    name = name.charAt(0).toUpperCase() + name.slice(1);
+    
+                    displayResult(name, className, raceName, backgroundName);
 
-                displayResult(name, className, raceName);
+                });
             });
         });
     });
 }
 
 // Function to display the generated character
-function displayResult(nome, className, raceName) {
+function displayResult(nome, className, raceName, backgroundName) {
     const resultContainer = document.getElementById('risultato');
     resultContainer.innerHTML = `
         <p>Name: <span class="white-text">${nome}</span></p>
         <p>Class: <span class="white-text">${className}</span></p>
         <p>Race: <span class="white-text">${raceName}</span></p>
+        <p>Background: <span class="white-text">${backgroundName}</span></p>
     `;
 }
 
