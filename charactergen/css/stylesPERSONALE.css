@@ -1,3 +1,4 @@
+/* Styling for the body */
 body {
   font-family: 'Roboto', sans-serif;
   background: url('../img/background.jpg') center/cover no-repeat;
@@ -10,16 +11,85 @@ body {
 }
 
 header {
+  margin: 0;
   width: 100%;
   background: linear-gradient(to right, #1f4037, #99f2c8);
-  padding: 20px;
+  padding: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
+}
+
+/* Container for the burger menu icon */
+.burger-menu {
+  width: 30px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 12; /* Ensure burger menu is on top of nav menu */
+}
+
+/* Individual bars of the burger menu */
+.burger-menu .bar {
+  width: 100%;
+  height: 4px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+/* Hidden navigation menu */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 200px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  transition: 0.4s;
+  z-index: 11; /* Ensure nav-menu is behind the burger menu */
+}
+
+/* Navigation list styling */
+.nav-menu ul {
+  list-style-type: none;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.nav-menu ul li {
+  margin: 20px 0;
+}
+
+/* Styling for navigation links */
+.nav-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Active state for burger menu and nav menu */
+.burger-menu.active .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger-menu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.nav-menu.active {
+  right: 0;
 }
 
 #logo-container {
@@ -66,7 +136,7 @@ button {
   color: white;
   padding: 15px 32px;
   font-size: 20px;
-  margin: 20px;
+  margin-top: 15px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -89,78 +159,4 @@ button:hover {
   font-size: 24px;
   color: #fff;
   font-style: oblique;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-    color: white;
-}
-
-/* Logo styles */
-.navbar-logo a {
-    text-decoration: none;
-    color: white;
-    font-size: 24px;
-}
-
-/* Navigation links styles */
-.navbar-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar-links li {
-    margin: 0 15px;
-}
-
-.navbar-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.navbar-links a:hover {
-    color: #ffd700;
-    transform: scale(1.1);
-}
-
-/* Responsive menu icon styles */
-.navbar-menu-icon {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.navbar-menu-icon .icon-bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 4px 0;
-}
-
-/* Media query for responsiveness */
-@media (max-width: 768px) {
-    .navbar-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #333;
-    }
-
-    .navbar-links.active {
-        display: flex;
-    }
-
-    .navbar-menu-icon {
-        display: flex;
-    }
 }
